@@ -12,20 +12,31 @@ Salva o PID do processo em arquivo (PidSave.txt)
 Permite encerrar o processo via comando
 Interface baseada em linha de comando (CLI)
 Uso de threads para execução não bloqueante
-⚙️ Como funciona
+Interação direta com a Windows API
+Controle de processos em nível baixo do sistema
+⚙️ Como executar
 
-O programa aceita comandos via argumentos:
+Para iniciar o programa, vá até a pasta onde está o executável e execute o comando abaixo:
 
-▶️ Start
-program.exe start
+PulseServer.exe start
+
+⚙️ Comandos disponíveis
+▶️ Iniciar monitoramento e processo
+
+PulseServer.exe start
+
 Inicia um processo dentro da pasta site
 Cria uma thread para execução independente
 Captura o PID do processo
 Inicia o monitoramento de CPU em loop
-⛔ Stop
-program.exe stopmonitoring
+Gera logs de uso de CPU em tempo real
+⛔ Parar processo monitorado
+
+PulseServer.exe stopmonitoring
+
 Lê o PID salvo em PidSave.txt
 Encerra o processo monitorado
+Finaliza o controle do programa
 📊 Monitoramento de CPU
 
 O cálculo de uso de CPU é feito utilizando funções nativas do Windows:
@@ -41,24 +52,37 @@ Uso de CPU do processo (%)
 Os resultados são:
 
 Exibidos no console
-Registrados em log.txt
+Registrados no arquivo log.txt
 🧠 Tecnologias utilizadas
-C (C17)
+Linguagem C (C17)
 Windows API
 Threads (CreateThread)
-Process Management (CreateProcess, OpenProcess, TerminateProcess)
-File I/O
-📁 Estrutura de arquivos
-/site              -> aplicação executada (npm start)
-/log.txt           -> logs de CPU
-/PidSave.txt       -> PID do processo monitorado
-/main.c            -> código principal
-/CpuUsage.c/.h     -> módulo de monitoramento
+Process Management:
+CreateProcessA
+OpenProcess
+TerminateProcess
+File I/O (manipulação de arquivos)
+Programação de sistema (System Programming)
+📁 Estrutura do projeto
+
+/site → aplicação executada (npm start)
+/log.txt → logs de CPU
+/PidSave.txt → PID do processo monitorado
+/main.c → código principal
+/CpuUsage.c/.h → módulo de monitoramento de CPU
+/PulseServer.exe → executável do sistema
+
 🚀 Objetivo
 
-O objetivo do projeto é praticar:
+O objetivo deste projeto é praticar:
 
 Manipulação de processos no Windows
 Programação com threads em C
 Monitoramento de desempenho do sistema
 Uso da Windows API em baixo nível
+Controle de execução de processos externos
+Leitura e escrita de arquivos em C
+📌 Status do projeto
+
+🚧 Em desenvolvimento
+O projeto ainda está sendo aprimorado e pode receber novas funcionalidades e melhorias de performance.
