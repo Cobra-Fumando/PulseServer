@@ -5,6 +5,8 @@ namespace Loja.Interfaces
 {
     public interface ILogin
     {
-        Task<TabelaProblem<Users>> Login(UserLogin userLogin);
+        Task<TabelaProblem<string>> Login(UserLogin userLogin);
+
+        Task<TabelaProblem<UserCadastro>> Cadastrar(Users users);
     }
 }

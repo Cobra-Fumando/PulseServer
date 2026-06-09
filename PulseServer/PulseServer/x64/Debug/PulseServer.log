@@ -1,2 +1,2 @@
 ﻿  CpuUsage.c
-  PulseServer.vcxproj -> C:\Users\Thiago\Desktop\PulseServer\src\PulseServer\x64\Debug\PulseServer.exe
+LINK : fatal error LNK1168: não foi possível abrir C:\Users\Thiago\Desktop\PulseServer\src\PulseServer\x64\Debug\PulseServer.exe para escrita

@@ -1,0 +1,81 @@
+﻿using Loja.Interfaces;
+using Loja.TabelasContext;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
+
+namespace Loja.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class LojaController : ControllerBase
+    {
+        private readonly ILojaConfig lojaConfig;
+        private const string Limit = "Fixed";
+        public LojaController(ILojaConfig lojaConfig)
+        {
+            this.lojaConfig = lojaConfig;
+        }
+
+        [EnableRateLimiting(Limit)]
+        [Authorize]
+        [HttpGet("GetCarrinho")]
+        public async Task<IActionResult> GetCarrinho()
+        {
+            var Result = await lojaConfig.GetCarrinho();
+            if (!Result.Sucesso) return BadRequest(new { Mensagem = Result.Mensagem });
+            return Ok(new { Mensagem = Result.Mensagem, Dados = Result.Dados });
+        }
+
+        [EnableRateLimiting(Limit)]
+        [Authorize]
+        [HttpPost("AddCarrinho")]
+        public async Task<IActionResult> AddCarrinho(Carrinho carrinho)
+        {
+            var Result = await lojaConfig.AddCarrinho(carrinho);
+            if (!Result.Sucesso) return BadRequest(new { Mensagem = Result.Mensagem });
+            return Ok(new { Mensagem = Result.Mensagem, Dados = Result.Dados });
+        }
+
+        [EnableRateLimiting(Limit)]
+        [Authorize]
+        [HttpDelete("RemoveCarrinho/{carrinhoId}")]
+        public async Task<IActionResult> RemoveCarrinho(int carrinhoId)
+        {
+            var Result = await lojaConfig.RemoveCarrinho(carrinhoId);
+            if (!Result.Sucesso) return BadRequest(new { Mensagem = Result.Mensagem });
+            return Ok(new { Mensagem = Result.Mensagem, Dados = Result.Dados });
+        }
+
+        [EnableRateLimiting(Limit)]
+        [Authorize]
+        [HttpGet("GetProdutos")]
+        public async Task<IActionResult> GetProdutos(int page = 1, int TamanhoPage = 10)
+        {
+            var Result = await lojaConfig.GetProdutos(page, TamanhoPage);
+            if (!Result.Sucesso) return BadRequest(new { Mensagem = Result.Mensagem });
+            return Ok(new { Mensagem = Result.Mensagem, Dados = Result.Dados });
+        }
+
+        [EnableRateLimiting(Limit)]
+        [Authorize]
+        [HttpGet("GetProdutoById/{id}")]
+        public async Task<IActionResult> GetProdutoById(int id)
+        {
+            var Result = await lojaConfig.GetProdutoById(id);
+            if (!Result.Sucesso) return BadRequest(new { Mensagem = Result.Mensagem });
+            return Ok(new { Mensagem = Result.Mensagem, Dados = Result.Dados });
+        }
+
+        [EnableRateLimiting(Limit)]
+        [Authorize]
+        [HttpPost("AddProduto")]
+        public async Task<IActionResult> AddProduto(Produtos produto)
+        {
+            var Result = await lojaConfig.AddProduto(produto);
+            if (!Result.Sucesso) return BadRequest(new { Mensagem = Result.Mensagem });
+            return Ok(new { Mensagem = Result.Mensagem, Dados = Result.Dados });
+        }
+    }
+}

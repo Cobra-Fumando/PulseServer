@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{6A90C799-2F40-4735-ABC4-071AD1E6E984}|PulseServer\\PulseServer.vcxproj|solutionrelative:PulseServer\\CpuUsage.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6A90C799-2F40-4735-ABC4-071AD1E6E984}|PulseServer\\PulseServer.vcxproj|C:\\Users\\Thiago\\Desktop\\PulseServer\\src\\PulseServer\\PulseServer\\Main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{6A90C799-2F40-4735-ABC4-071AD1E6E984}|PulseServer\\PulseServer.vcxproj|solutionrelative:PulseServer\\Main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6A90C799-2F40-4735-ABC4-071AD1E6E984}|PulseServer\\PulseServer.vcxproj|C:\\Users\\Thiago\\Desktop\\PulseServer\\src\\PulseServer\\PulseServer\\CpuUsage.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6A90C799-2F40-4735-ABC4-071AD1E6E984}|PulseServer\\PulseServer.vcxproj|solutionrelative:PulseServer\\CpuUsage.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6A90C799-2F40-4735-ABC4-071AD1E6E984}|PulseServer\\PulseServer.vcxproj|C:\\Users\\Thiago\\Desktop\\PulseServer\\src\\PulseServer\\PulseServer\\ServerStart.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6A90C799-2F40-4735-ABC4-071AD1E6E984}|PulseServer\\PulseServer.vcxproj|solutionrelative:PulseServer\\ServerStart.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A90C799-2F40-4735-ABC4-071AD1E6E984}|PulseServer\\PulseServer.vcxproj|C:\\Users\\Thiago\\Desktop\\PulseServer\\src\\PulseServer\\PulseServer\\Main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A90C799-2F40-4735-ABC4-071AD1E6E984}|PulseServer\\PulseServer.vcxproj|solutionrelative:PulseServer\\Main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,16 +46,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "CpuUsage.h",
               "DocumentMoniker": "C:\\Users\\Thiago\\Desktop\\PulseServer\\src\\PulseServer\\PulseServer\\CpuUsage.h",
               "RelativeDocumentMoniker": "PulseServer\\CpuUsage.h",
               "ToolTip": "C:\\Users\\Thiago\\Desktop\\PulseServer\\src\\PulseServer\\PulseServer\\CpuUsage.h",
               "RelativeToolTip": "PulseServer\\CpuUsage.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-05-23T14:22:05.725Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-23T14:22:05.725Z"
             },
             {
               "$type": "Document",
@@ -65,14 +64,14 @@
               "RelativeDocumentMoniker": "PulseServer\\CpuUsage.c",
               "ToolTip": "C:\\Users\\Thiago\\Desktop\\PulseServer\\src\\PulseServer\\PulseServer\\CpuUsage.c",
               "RelativeToolTip": "PulseServer\\CpuUsage.c",
-              "ViewState": "AgIAAMsAAAAAAAAAAAAQwOkAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAABoBAAAAAAAAAAAAADwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-05-23T14:21:45.157Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Main.c",
               "DocumentMoniker": "C:\\Users\\Thiago\\Desktop\\PulseServer\\src\\PulseServer\\PulseServer\\Main.c",
               "RelativeDocumentMoniker": "PulseServer\\Main.c",
@@ -80,12 +79,11 @@
               "RelativeToolTip": "PulseServer\\Main.c",
               "ViewState": "AgIAABgAAAAAAAAAAAAQwEAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2026-05-23T13:54:08.241Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-23T13:54:08.241Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "ServerStart.h",
               "DocumentMoniker": "C:\\Users\\Thiago\\Desktop\\PulseServer\\src\\PulseServer\\PulseServer\\ServerStart.h",
               "RelativeDocumentMoniker": "PulseServer\\ServerStart.h",
@@ -93,8 +91,7 @@
               "RelativeToolTip": "PulseServer\\ServerStart.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-05-23T13:51:04.334Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-23T13:51:04.334Z"
             }
           ]
         }

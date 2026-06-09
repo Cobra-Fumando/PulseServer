@@ -2,6 +2,12 @@
 #include <Windows.h>
 #include <stdio.h>
 
+DWORD WINAPI ThreadFunction(LPVOID lpParam) {
+	DWORD pid = (DWORD)(ULONG_PTR)lpParam;
+	StartCpuUsageMonitoring(pid);
+	return 0;
+}
+
 ULONGLONG FileTimeToULL(const FILETIME* ft)
 {
 	ULARGE_INTEGER uli;
@@ -174,20 +180,37 @@ void StartProgram() {
 	STARTUPINFOA si;
 	PROCESS_INFORMATION pi;
 
-	ZeroMemory(&si, sizeof(si));
+	HANDLE hThreadNpm;
+	HANDLE hThreadDotnet;
+
+	DWORD pid;
+	DWORD pidDotnet;
+
+	STARTUPINFOA siDotnet;
+	PROCESS_INFORMATION piDotnet;
+
+	ZeroMemory(&si, sizeof(si));	
 	si.cb = sizeof(si);
 
+	ZeroMemory(&siDotnet, sizeof(siDotnet));
+	siDotnet.cb = sizeof(siDotnet);
+
 	ZeroMemory(&pi, sizeof(pi));
+	ZeroMemory(&piDotnet, sizeof(piDotnet));
 
 	char cmd[] = "cmd.exe /c npm start";
+	char cmdDotnet[] = "cmd.exe /c dotnet run";
 	char dir[MAX_PATH];
+	char dirdot[MAX_PATH];
 	DWORD Result = GetCurrentDirectoryA(MAX_PATH, dir);
+	DWORD ResultDotnet = GetCurrentDirectoryA(MAX_PATH, dirdot);
 	if (!Result) {
 		printf("Erro ao obter diretório atual. Código: %lu\n", GetLastError());
 		return;
 	}
 
 	strcat_s(dir, MAX_PATH, "\\site");
+	strcat_s(dirdot, MAX_PATH, "\\Loja\\Loja");
 
 	if (CreateProcessA(
 		NULL,
@@ -203,18 +226,52 @@ void StartProgram() {
 	)) {
 
 		printf("Processo iniciado com sucesso\n");
-
+				
 		printf("PID: %lu\n", pi.dwProcessId);
 
 		printf("HANDLE Processo: %p\n", pi.hProcess);
 		printf("HANDLE Thread: %p\n", pi.hThread);
 
-		DWORD pid = pi.dwProcessId;
+		pid = pi.dwProcessId;
 		SavePid(pid);
-		StartCpuUsageMonitoring(pid);
+		hThreadNpm = CreateThread(NULL, 0, ThreadFunction, (LPVOID)(ULONG_PTR)pid, 0, NULL);
 
 		CloseHandle(pi.hThread);
 		CloseHandle(pi.hProcess);
+	}
+	else
+	{
+		printf("Erro ao iniciar processo.\n");
+		printf("Codigo erro: %lu\n", GetLastError());
+	}
+
+	if (CreateProcessA(
+		NULL,
+		cmdDotnet,
+		NULL,
+		NULL,
+		FALSE,
+		CREATE_NEW_CONSOLE,
+		NULL,
+		dirdot,
+		&siDotnet,
+		&piDotnet
+	))
+	{
+
+		printf("Processo iniciado com sucesso\n");
+
+		printf("PID: %lu\n", piDotnet.dwProcessId);
+
+		printf("HANDLE Processo: %p\n", piDotnet.hProcess);
+		printf("HANDLE Thread: %p\n", piDotnet.hThread);
+
+		pidDotnet = piDotnet.dwProcessId;
+		SavePid(pidDotnet);
+		hThreadDotnet = CreateThread(NULL, 0, ThreadFunction, (LPVOID)(ULONG_PTR)pidDotnet, 0, NULL);
+
+		CloseHandle(piDotnet.hThread);
+		CloseHandle(piDotnet.hProcess);
 	}
 	else
 	{
@@ -233,7 +290,7 @@ void StopProgramMonitoring() {
 		return;
 	}
 
-	if (TerminateProcess(hProcess, 0)){
+	if (TerminateProcess(hProcess, 0)) {
 		printf("Processo %lu finalizado com sucesso\n", Pid);
 	}
 	else {

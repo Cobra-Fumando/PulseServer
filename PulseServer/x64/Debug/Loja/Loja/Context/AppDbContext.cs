@@ -9,6 +9,8 @@ namespace Loja.Conexao
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-         public DbSet<Users> Users { get; set; }
+        public DbSet<Users> Users { get; set; }
+        public DbSet<Produtos> Produtos { get; set; }
+        public DbSet<Carrinho> Carrinho { get; set; }
     }
 }

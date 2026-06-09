@@ -18,5 +18,7 @@ namespace Loja.TabelasContext
 
         [Required(ErrorMessage = "A senha é obrigatória")]
         public required string senha { get; set; }
+
+        ICollection<Carrinho> Carrinho { get; set; } = new List<Carrinho>();
     }
 }
