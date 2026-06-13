@@ -9,7 +9,7 @@ namespace Loja.TabelasContext
         [Key]
         public int id { get; set; }
 
-        [Required(ErrorMessage = "o Nome do produto é obrigatório")]
+        [Required(ErrorMessage = "O Nome do produto é obrigatório")]
         public required string nome { get; set; }
 
         [Range(0.01, double.MaxValue, ErrorMessage = "O preço deve ser maior que zero")]

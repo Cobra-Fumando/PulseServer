@@ -1,4 +1,6 @@
 ﻿using Loja.Interfaces;
+using Loja.Tabelas;
+using Loja.Tabelas.TabelasDto;
 using Loja.TabelasContext;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -25,13 +27,19 @@ namespace Loja.Controllers
         {
             var Result = await lojaConfig.GetCarrinho();
             if (!Result.Sucesso) return BadRequest(new { Mensagem = Result.Mensagem });
-            return Ok(new { Mensagem = Result.Mensagem, Dados = Result.Dados });
+            decimal? valortotal = 0;
+            foreach(CarrinhoDto carrinhoDto in Result.Dados)
+            {
+                valortotal += (carrinhoDto.Produto.preco * carrinhoDto.quantidade);
+            }
+
+            return Ok(new { Mensagem = Result.Mensagem, Dados = Result.Dados, ValorTotal = valortotal});
         }
 
         [EnableRateLimiting(Limit)]
         [Authorize]
         [HttpPost("AddCarrinho")]
-        public async Task<IActionResult> AddCarrinho(Carrinho carrinho)
+        public async Task<IActionResult> AddCarrinho(CarrinhoParam carrinho)
         {
             var Result = await lojaConfig.AddCarrinho(carrinho);
             if (!Result.Sucesso) return BadRequest(new { Mensagem = Result.Mensagem });
@@ -50,7 +58,7 @@ namespace Loja.Controllers
 
         [EnableRateLimiting(Limit)]
         [Authorize]
-        [HttpGet("GetProdutos")]
+        [HttpGet("GetProdutos/{page}")]
         public async Task<IActionResult> GetProdutos(int page = 1, int TamanhoPage = 10)
         {
             var Result = await lojaConfig.GetProdutos(page, TamanhoPage);
