@@ -13,9 +13,9 @@ namespace Loja.Classes
 
         public Token(IConfiguration configuration)
         {
-            _SecretKey = configuration["JwtSettings:Secret"];
-            _issuer = configuration["JwtSettings:Issuer"];
-            _audience = configuration["JwtSettings:Audience"];
+            _SecretKey = configuration["JwtSettings:Secret"]!;
+            _issuer = configuration["JwtSettings:Issuer"]!;
+            _audience = configuration["JwtSettings:Audience"]!;
         }
         public string GenerateToken(string Nome, int id)
         {

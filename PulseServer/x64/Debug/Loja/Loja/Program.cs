@@ -1,12 +1,15 @@
+using Loja.Backgroundservice;
 using Loja.Classes;
 using Loja.Components;
 using Loja.Conexao;
+using Loja.Config;
 using Loja.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using RabbitMQ.Client;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,10 +20,25 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<ILogin, LoginClass>();
-builder.Services.AddScoped<ILojaConfig, LojaConfig>();
+builder.Services.AddScoped<ICarrinhoConfig, CarrinhoConfig>();
+builder.Services.AddScoped<IProdutosConfig, ProdutosConfig>();
 builder.Services.AddScoped<Token>();
 builder.Services.AddScoped<IPasswordHasher<object>, PasswordHasher<object>>();
 builder.Services.AddScoped<Hash>();
+builder.Services.AddScoped<Userid>();
+builder.Services.AddScoped<IEnviarEmail, EnviarEmail>();
+builder.Services.AddSingleton<TriggerEmail>();
+
+builder.Services.AddHostedService<BackgroundEmail>();
+
+var factory = new ConnectionFactory()
+{
+    HostName = "localhost",
+    UserName = "guest",
+    Password = "guest"
+};
+
+builder.Services.AddSingleton<IConnection>(factory.CreateConnectionAsync().GetAwaiter().GetResult());
 
 builder.Services.AddCors(options =>
 {

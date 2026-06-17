@@ -11,13 +11,13 @@ namespace Loja.Classes
         }
         public string GerarCryp(string Senha)
         {
-            var result = passwordHasher.HashPassword(null, Senha);
+            var result = passwordHasher.HashPassword(null!, Senha);
             return result;
         }
 
         public bool verificarHash(string Senha, string Hash)
         {
-            var result = passwordHasher.VerifyHashedPassword(null, Hash, Senha);
+            var result = passwordHasher.VerifyHashedPassword(null!, Hash, Senha);
             return result == PasswordVerificationResult.Success;
         }
     }
