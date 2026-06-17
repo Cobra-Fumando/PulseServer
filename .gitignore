@@ -14,3 +14,9 @@ obj/
 
 # VS Code
 .vscode/
+
+# development
+appsettings.Development.json
+bin/
+obj/
+x64/
