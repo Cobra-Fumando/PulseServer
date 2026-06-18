@@ -12,5 +12,6 @@ namespace Loja.Conexao
         public DbSet<Users> Users { get; set; }
         public DbSet<Produtos> Produtos { get; set; }
         public DbSet<Carrinho> Carrinho { get; set; }
+        public DbSet<HistoricoPagamentos> HistoricoPagamentos { get; set; }
     }
 }

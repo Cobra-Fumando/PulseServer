@@ -75,9 +75,10 @@ namespace Loja.Components
                 Carrinho carrinhoAdd = new Carrinho
                 {
                     ProdutoId = carrinho.ProdutoId,
-                    UserId = carrinho.UserId,
-                    quantidade = carrinho.quantidade
+                    UserId = carrinho.UserId
                 };
+
+                carrinhoAdd.AdicionarQtd(carrinho.quantidade);
 
                 context.Carrinho.Add(carrinhoAdd);
                 await context.SaveChangesAsync();
@@ -144,7 +145,8 @@ namespace Loja.Components
                 {
                     return StatusProblem.Fail<List<Carrinho>>("Item do carrinho não encontrado");
                 }
-                carrinhoItem.quantidade = quantidade;
+
+                carrinhoItem.AdicionarQtd(quantidade);
                 context.Carrinho.Update(carrinhoItem);
                 await context.SaveChangesAsync();
                 var list = await context.Carrinho.Where(c => c.UserId == userId).ToListAsync();

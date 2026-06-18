@@ -16,5 +16,32 @@ namespace Loja.TabelasContext
         public required decimal preco { get; set; }
         public string? descricao { get; set; } = null;
         public string? imagemUrl { get; set; } = null;
+        public int? Quantidade { get; private set; }
+        public void AdicionarQtd(int Qtd)
+        {
+            if(Qtd <= 0)
+            {
+                throw new ArgumentException("A quantidade tem que ser maior que zero");
+            }
+
+            Quantidade += Qtd;
+        }
+
+        public void RetirarQtd(int Qtd)
+        {
+            if(Qtd <= 0)
+            {
+                throw new ArgumentException("A quantidade tem que ser maior que zero");
+            }else if(Qtd > Quantidade)
+            {
+                throw new ArgumentException("A quantidade retirada não pode superar o estoque total");
+            }
+
+            Quantidade -= Qtd;
+        }
+
+        [ForeignKey("Usuario")]
+        public int VendedorId { get; set; }
+        public Users Usuario { get; set; }
     }
 }

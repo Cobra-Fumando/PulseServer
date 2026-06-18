@@ -10,10 +10,10 @@ namespace Loja.Config
             this.httpContextAccessor = httpContextAccessor;
         }
 
-        public int? GetUserId()
+        public int GetUserId()
         {
-            var tokenId = httpContextAccessor?.HttpContext?.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-            return int.TryParse(tokenId, out int id) ? id : null;
+            var tokenId = httpContextAccessor.HttpContext?.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            return int.TryParse(tokenId, out int id) ? id : throw new ArgumentException("Nenhum id encontrado");
         }
     }
 }

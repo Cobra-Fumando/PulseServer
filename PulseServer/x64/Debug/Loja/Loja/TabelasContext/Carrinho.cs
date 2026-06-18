@@ -15,6 +15,23 @@ namespace Loja.TabelasContext
         [ForeignKey("Usuario")]
         public int UserId { get; set; }
         public Users Usuario { get; set; }
-        public int quantidade { get; set; }
+        public int quantidade { get; private set; }
+        public void AdicionarQtd(int Qtd)
+        {
+            if(Qtd < 0)
+            {
+                throw new ArgumentException("Quantidade não pode ser menor que zero");
+            }
+
+            quantidade += Qtd;
+        }
+
+        public void RetirarQtd(int Qtd)
+        {
+            if (Qtd < 0) throw new ArgumentException("Quantidade não pode ser menor que zero");
+            else if (Qtd > 0) throw new ArgumentException("A quantidade não pode ser maior que o valor de estoque");
+
+            quantidade -= Qtd;
+        }
     }
 }
